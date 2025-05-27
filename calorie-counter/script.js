@@ -7,11 +7,14 @@ const output = document.getElementById('output');
 let isError = false;
 
 function cleanInputString(str) {
+  //we use regex to remove any unwanted characters like +, -, or spaces
   const regex = /[+-\s]/g;
   return str.replace(regex, '');
 }
 
 function isInvalidInput(str) {
+  // \d is a digit, e is for scientific notation, and \d+e\d+ matches numbers like 1e3 or 2.5e-2
+  // This regex checks for numbers in scientific notation, which can be valid in some contexts
   const regex = /\d+e\d+/i;
   return str.match(regex);
 }
@@ -29,6 +32,7 @@ function addEntry() {
     id="${entryDropdown.value}-${entryNumber}-calories"
     placeholder="Calories"
   />`;
+  // innertAdjacentHTML is used to insert the HTML string into the target input container
   targetInputContainer.insertAdjacentHTML('beforeend', HTMLString);
 }
 
